@@ -5,15 +5,17 @@ angular.module('fine', ['ngRoute','ui.bootstrap'])
 
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider
-            .when('/view1', {
-                templateUrl: 'view1/view1.html',
+            .when('/multiRow', {
+                templateUrl: 'multiRow/MRdefaultView.html',
                 controller: 'multiRowCtrl'
             })
-            .when('/view2', {
-                templateUrl: 'view2/view2.html',
+            .when('/singleRow', {
+                templateUrl: 'singleRow/SRdefaultView.html',
                 controller: 'singleRowCtrl'
-            });
+            })
+            .otherwise({redirectTo: '/multiRow'});
     }])
+
 
     // Service gegevens op uit file:
     .service('recordsFromFileService', function ($http) {
@@ -68,15 +70,17 @@ angular.module('fine', ['ngRoute','ui.bootstrap'])
             }
         );
 
-        $scope.selectRow = function(index) {
-            $rootScope.selectedRow = $scope.records[index];
-            console.log('Index:' + index);
-            window.location.href = "#/view2";
+        $scope.selectRow = function(id) {
+            // Levert ARRAY op die maar 1 element mag bevatten!
+            $rootScope.selectedRow = filterFilter($scope.records, {'id':id});
+            console.log('Id:' + id);
+            window.location.href = "#/singleRow";
         }
     })
 
     .controller('singleRowCtrl', function($scope,$rootScope) {
         $scope.controllerName = 'singleRowCtrl';
-        $scope.selectedRow    =  $rootScope.selectedRow
+        $scope.selectedRow    =  $rootScope.selectedRow[0]
+        console.log('klaar');
     }
 );

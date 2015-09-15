@@ -1,12 +1,12 @@
 [
-  {"code": "DE", "omschrijving": "Duitsland"},
-  {"code": "IT", "omschrijving": "Italië"},
-  {"code": "FR", "omschrijving": "Frankrijk"},
-  {"code": "AT", "omschrijving": "Oostenrijk"},
-  {"code": "SE", "omschrijving": "Zweden"},
-  {"code": "BE", "omschrijving": "België"},
-  {"code": "US", "omschrijving": "Verenigde Staten"},
-  {"code": "UK", "omschrijving": "Verenigd Koninkrijk"},
-  {"code": "DK", "omschrijving": "Denemarken"}
+  {"id": 1, "code": "DE", "omschrijving": "Duitsland"},
+  {"id": 2, "code": "IT", "omschrijving": "Italië"},
+  {"id": 3, "code": "FR", "omschrijving": "Frankrijk"},
+  {"id": 4, "code": "AT", "omschrijving": "Oostenrijk"},
+  {"id": 5, "code": "SE", "omschrijving": "Zweden"},
+  {"id": 6, "code": "BE", "omschrijving": "België"},
+  {"id": 7, "code": "US", "omschrijving": "Verenigde Staten"},
+  {"id": 8, "code": "UK", "omschrijving": "Verenigd Koninkrijk"},
+  {"id": 9, "code": "DK", "omschrijving": "Denemarken"}
 ]
 

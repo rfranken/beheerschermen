@@ -5,6 +5,6 @@
 angular.module('fine.beheer')
     .service('dataService', function ($http) {
         this.getData = function (tabel) {
-            return $http.get(tabel+'.json');
+            return $http.get('json\/' + tabel+'.json');
         }
 ;    })

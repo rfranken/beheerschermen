@@ -1,0 +1,33 @@
+    <h3>Overzicht van Constanten</h3>
+    <div ng-controller="multiRowCtrl">
+        <label>Zoek:</label> <input type="text" ng-model="search.omschrijving" placeholder="Zoek..." />
+        <a href="" ng-click="resetFilters()" ng-if="search.omschrijving ">Toon alles</a>
+
+        <ul>
+            <li ng-repeat="item in filtered = items | filter:search | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">{{item.code}}&nbsp;{{item.omschrijving}}</li>
+        </ul>
+        <p>Er zijn nu {{totalRecords}} rijen</p>
+
+        <pagination page="currentPage" max-size="noOfPages" total-items="totalRecords" items-per-page="entryLimit"></pagination>
+        <br/>
+
+        <table class="table table-striped fine-table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Code</th>
+                <th>Omschrijving</th>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="record in filtered = records | filter:search | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit" id="row_{{record.ID}}">
+                <td>{{record.id}}</td>
+                <td>{{record.code}}</td>
+                <td>{{record.omschrijving}}</td>
+                <td><button class="btn btn-danger" ng-click="selectRow(record.id)">Selecteer</button> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+

@@ -1,28 +1,30 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('fine', ['ngRoute','ui.bootstrap'])
+angular.module('fine.beheer', ['ngRoute','ui.bootstrap'])
 
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider
-            .when('/multiRow', {
-                templateUrl: 'multiRow/MRdefaultView.html',
+            .when('/landen/MR', {
+                templateUrl: 'schermen/landen/MRdefaultView.html',
                 controller: 'multiRowCtrl'
             })
-            .when('/singleRow', {
-                templateUrl: 'singleRow/SRdefaultView.html',
+            .when('/landen/SR', {
+                templateUrl: 'schermen/landen/SRdefaultView.html',
                 controller: 'singleRowCtrl'
             })
-            .otherwise({redirectTo: '/multiRow'});
+            .when('/constanten/MR', {
+                templateUrl: 'schermen/constanten/MRdefaultView.html',
+                controller: 'multiRowCtrl'
+            })
+            .when('/constanten/SR', {
+                templateUrl: 'schermen/constanten/SRdefaultView.html',
+                controller: 'singleRowCtrl'
+            })
+            .otherwise({redirectTo: '/landen/MR'});
     }])
 
 
-    // Service gegevens op uit file:
-    .service('recordsFromFileService', function ($http) {
-        this.getData = function () {
-            return $http.get('landen.json');
-        }
-    })
 
     .filter('startFrom', function () {
         return function (input, start) {
@@ -34,9 +36,14 @@ angular.module('fine', ['ngRoute','ui.bootstrap'])
         };
     })
 
-    .controller('multiRowCtrl', function ($scope, filterFilter,recordsFromFileService,$rootScope) {
+    .controller('multiRowCtrl', function ($scope, filterFilter,dataService,$rootScope) {
         $scope.readingFromDatabase=true;
-        recordsFromFileService.getData()
+        // afleiden van het pad:
+        var  urlNum = window.location.href.split('/');
+        // Het zesde element bevat de tabelnaam en dus de naam voor de service.
+        // vb:
+        // ["http:", "", "localhost:63342", "fine.beheer", "app", "index.html#", "constanten", "MR"]
+        dataService.getData(urlNum[6])
             .then(
             function(result) {
                 $scope.readingFromDatabase=false;
@@ -74,7 +81,8 @@ angular.module('fine', ['ngRoute','ui.bootstrap'])
             // Levert ARRAY op die maar 1 element mag bevatten!
             $rootScope.selectedRow = filterFilter($scope.records, {'id':id});
             console.log('Id:' + id);
-            window.location.href = "#/singleRow";
+            // De schoonheidsprijs verdient het niet omhoog en omlaag lijkt niet te lukken:
+            window.location.href = window.location.href.replace('/MR','/SR')
         }
     })
 

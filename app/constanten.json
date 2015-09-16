@@ -1,0 +1,8 @@
+[
+  {"id": 1, "code": "ABC", "omschrijving": "Dit is ABC"},
+  {"id": 2, "code": "CDE", "omschrijving": "Dit is CDE"},
+  {"id": 3, "code": "FGH", "omschrijving": "Dit is FGH"},
+  {"id": 4, "code": "IJK", "omschrijving": "Dit is IJK"},
+  {"id": 5, "code": "LMN", "omschrijving": "Dit is LMN"}
+]
+
